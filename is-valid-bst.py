@@ -12,11 +12,8 @@ class Solution:
     def isValidBSTHelper(self, root: TreeNode, min=float('-inf'), max=float('inf')) -> bool:
         if not root:
             return True
-        if root.val > max or root.val < min:
-            return False
-        if root.left and root.left.val > root.val:
-            return False
-        if root.right and root.right.val < root.val:
+
+        if root.val <= min or root.val >= max:
             return False
 
         return self.isValidBSTHelper(root.left, min, root.val) and self.isValidBSTHelper(root.right, root.val, max)
