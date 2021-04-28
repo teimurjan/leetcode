@@ -2,49 +2,122 @@ from typing import List
 import unittest
 
 
-class Solution:
+class SolutionTwoSum:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         result = []
-        added_keys = set()
+        nums.sort()
 
+        prev = None
         for i, num in enumerate(nums):
-            j, k = self.twoSum(nums, -num)
+            if num > 0:
+                break
+            if num == prev:
+                continue
 
-            if i != j and i != k and k != j:
-                result_item = sorted([nums[i], nums[j], nums[k]])
-                result_item_key = (
-                    str(result_item[0]) +
-                    str(result_item[1]) +
-                    str(result_item[2])
-                )
-
-                if result_item_key not in added_keys:
-                  added_keys.add(result_item_key)
-                  result.append(result_item)
+            if i == 0 or nums[i - 1] != nums[i]:
+                self.twoSum(nums, i, result)
 
         return result
 
-    def twoSum(self, nums: List[int], target: int) -> List[List[int]]:
-        index_of_num = {}
+    def twoSum(self, nums: List[int], pos: int, result: List[List[int]]) -> List[List[int]]:
+        seen = set()
+        j = pos + 1
+
+        while j < len(nums):
+            contender = -nums[pos] - nums[j]
+            if contender in seen:
+                result.append([nums[pos], nums[j], contender])
+
+                while j + 1 < len(nums) and nums[j] == nums[j + 1]:
+                    j += 1
+
+            seen.add(nums[j])
+            j += 1
+
+
+class SolutionTwoSum2:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums.sort()
+
+        prev = None
+        for i, num in enumerate(nums):
+            if num > 0:
+                break
+            if num == prev:
+                continue
+
+            if i == 0 or nums[i - 1] != nums[i]:
+                self.twoSum(nums, i, result)
+
+        return result
+
+    def twoSum(self, nums: List[int], pos: int, result: List[List[int]]) -> List[List[int]]:
+        low, high = pos + 1, len(nums) - 1
+
+        while low < high:
+            sum_ = nums[pos] + nums[low] + nums[high]
+            if sum_ == 0:
+                result.append([nums[pos], nums[low], nums[high]])
+
+                low += 1
+                high -= 1
+
+                # skip duplicates
+                while low < high and nums[low] == nums[low - 1]:
+                    low += 1
+            elif sum_ < 0:
+                low += 1
+            else:
+                high -= 1
+
+
+class SolutionNoSort:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = set()
+        duplicates = set()
+        seen = {}
 
         for i, num in enumerate(nums):
-            index_of_num[num] = i
+            if num in duplicates:
+                continue
 
-        for i, num in enumerate(nums):
-            contender_index = index_of_num.get(target - num)
-            if index_of_num.get(target - num) and i != contender_index:
-                return i, contender_index
+            for j in range(i + 1, len(nums)):
+                duplicates.add(num)
+                num_j = nums[j]
+                complement = -num - num_j
 
-        return 0, 0
+                if complement in seen and seen[complement] == i:
+                    result.add(tuple(sorted([num, num_j, complement])))
+
+                seen[num_j] = i
+
+        return result
 
 
 class Test(unittest.TestCase):
-    def test(self):
-        s = Solution()
+    def test_solution_two_sum(self):
+        s = SolutionTwoSum()
+
+        self.assertEqual(s.threeSum(
+            [-1, 0, 1, 2, -1, -4]),
+            [[-1, 1, 0], [-1, 2, -1]]
+        )
+
+    def test_solution_two_sum_2(self):
+        s = SolutionTwoSum2()
 
         self.assertEqual(s.threeSum(
             [-1, 0, 1, 2, -1, -4]),
             [[-1, -1, 2], [-1, 0, 1]]
+        )
+
+    def test_solution_no_sort(self):
+        s = SolutionNoSort()
+
+        self.assertEqual(s.threeSum(
+            [-1, 0, 1, 2, -1, -4]),
+            set([(-1, -1, 2), (-1, 0, 1)])
         )
 
 
