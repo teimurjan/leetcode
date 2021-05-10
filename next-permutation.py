@@ -46,7 +46,7 @@ class Test(unittest.TestCase):
 
         nums_6 = [1, 5, 8, 4, 7, 6, 5, 3, 1]
         nums_6_final = [1, 5, 8, 5, 1, 3, 4, 6, 7]
-        
+
         s.nextPermutation(nums_1)
         self.assertEqual(nums_1, nums_1_final)
 
@@ -66,5 +66,5 @@ class Test(unittest.TestCase):
         self.assertEqual(nums_6, nums_6_final)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

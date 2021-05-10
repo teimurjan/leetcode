@@ -4,7 +4,7 @@ import unittest
 
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        nums1_copy = nums1[0: m]
+        nums1_copy = nums1[0:m]
         i, j, k = 0, 0, 0
 
         while i < m + n:
@@ -68,5 +68,5 @@ class Test(unittest.TestCase):
         self.assertEqual(nums1, [1, 2, 3, 4, 5, 6])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

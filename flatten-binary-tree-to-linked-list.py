@@ -1,5 +1,5 @@
 from collections import deque
-from typing import Deque
+from typing import Deque, Optional
 import unittest
 
 
@@ -11,7 +11,7 @@ class TreeNode:
 
 
 class Solution:
-    def flatten_helper(self, root: TreeNode, q: Deque) -> None:
+    def flatten_helper(self, root: Optional[TreeNode], q: Deque) -> None:
         if not root:
             return
 
@@ -20,7 +20,7 @@ class Solution:
         self.flatten_helper(root.left, q)
         self.flatten_helper(root.right, q)
 
-    def flatten(self, root: TreeNode) -> bool:
+    def flatten(self, root: TreeNode):
         q = deque()
         self.flatten_helper(root, q)
 
@@ -31,7 +31,6 @@ class Solution:
             root_.left = None
 
             root_ = root_.right
-
 
 
 class Test(unittest.TestCase):
@@ -73,10 +72,10 @@ class Test(unittest.TestCase):
         for i in result:
             self.assertEqual(tree.val, i)
             tree = tree.right
-    
+
     def test_edge(self):
         tree = TreeNode(1)
-        
+
         result = [1]
 
         s = Solution()
@@ -88,5 +87,5 @@ class Test(unittest.TestCase):
             tree = tree.right
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

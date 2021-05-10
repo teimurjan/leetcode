@@ -38,7 +38,11 @@ class SlidingWindowOptimizedSolution:
             if is_visited:
                 result = max(result, right - left)
                 next_after_visited_index = visited[s[right]] + 1
-                left = next_after_visited_index if left < next_after_visited_index else left
+                left = (
+                    next_after_visited_index
+                    if left < next_after_visited_index
+                    else left
+                )
 
             visited[s[right]] = right
             right += 1
@@ -52,21 +56,21 @@ class Test(unittest.TestCase):
     def test_sliding_window(self):
         s = SlidingWindowSolution()
 
-        self.assertEqual(s.lengthOfLongestSubstring('tmmzuxt'), 5)
-        self.assertEqual(s.lengthOfLongestSubstring('abba'), 2)
-        self.assertEqual(s.lengthOfLongestSubstring('pwwkew'), 3)
-        self.assertEqual(s.lengthOfLongestSubstring('abcabcbb'), 3)
-        self.assertEqual(s.lengthOfLongestSubstring('dvdf'), 3)
+        self.assertEqual(s.lengthOfLongestSubstring("tmmzuxt"), 5)
+        self.assertEqual(s.lengthOfLongestSubstring("abba"), 2)
+        self.assertEqual(s.lengthOfLongestSubstring("pwwkew"), 3)
+        self.assertEqual(s.lengthOfLongestSubstring("abcabcbb"), 3)
+        self.assertEqual(s.lengthOfLongestSubstring("dvdf"), 3)
 
     def test_sliding_window_optimized(self):
         s = SlidingWindowOptimizedSolution()
 
-        self.assertEqual(s.lengthOfLongestSubstring('tmmzuxt'), 5)
-        self.assertEqual(s.lengthOfLongestSubstring('abba'), 2)
-        self.assertEqual(s.lengthOfLongestSubstring('pwwkew'), 3)
-        self.assertEqual(s.lengthOfLongestSubstring('abcabcbb'), 3)
-        self.assertEqual(s.lengthOfLongestSubstring('dvdf'), 3)
+        self.assertEqual(s.lengthOfLongestSubstring("tmmzuxt"), 5)
+        self.assertEqual(s.lengthOfLongestSubstring("abba"), 2)
+        self.assertEqual(s.lengthOfLongestSubstring("pwwkew"), 3)
+        self.assertEqual(s.lengthOfLongestSubstring("abcabcbb"), 3)
+        self.assertEqual(s.lengthOfLongestSubstring("dvdf"), 3)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

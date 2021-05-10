@@ -3,7 +3,7 @@ import unittest
 
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
-        result = ''
+        result = ""
 
         i, j = len(a) - 1, len(b) - 1
 
@@ -20,7 +20,7 @@ class Solution:
             j -= 1
 
         if carry:
-            result = '1' + result
+            result = "1" + result
 
         return result
 
@@ -29,10 +29,10 @@ class Test(unittest.TestCase):
     def test(self):
         s = Solution()
 
-        self.assertEqual(s.addBinary('1111', '1111'), '11110')
-        self.assertEqual(s.addBinary('1010', '1011'), '10101')
-        self.assertEqual(s.addBinary('11', '1'), '100')
+        self.assertEqual(s.addBinary("1111", "1111"), "11110")
+        self.assertEqual(s.addBinary("1010", "1011"), "10101")
+        self.assertEqual(s.addBinary("11", "1"), "100")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

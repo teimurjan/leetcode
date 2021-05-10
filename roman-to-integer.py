@@ -4,13 +4,13 @@ import unittest
 class Solution:
     def romanToInt(self, s: str) -> int:
         value_of = {
-            'M': 1000,
-            'D': 500,
-            'C': 100,
-            'L': 50,
-            'X': 10,
-            'V': 5,
-            'I': 1,
+            "M": 1000,
+            "D": 500,
+            "C": 100,
+            "L": 50,
+            "X": 10,
+            "V": 5,
+            "I": 1,
         }
 
         result = 0
@@ -45,12 +45,12 @@ class Test(unittest.TestCase):
     def test(self):
         s = Solution()
 
-        self.assertEqual(s.romanToInt('LVIII'), 58)
-        self.assertEqual(s.romanToInt('III'), 3)
-        self.assertEqual(s.romanToInt('IV'), 4)
-        self.assertEqual(s.romanToInt('IX'), 9)
-        self.assertEqual(s.romanToInt('MCMXCIV'), 1994)
+        self.assertEqual(s.romanToInt("LVIII"), 58)
+        self.assertEqual(s.romanToInt("III"), 3)
+        self.assertEqual(s.romanToInt("IV"), 4)
+        self.assertEqual(s.romanToInt("IX"), 9)
+        self.assertEqual(s.romanToInt("MCMXCIV"), 1994)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -3,7 +3,7 @@ import unittest
 
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[List[int]]:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         index_of_num = {}
 
         for i, num in enumerate(nums):
@@ -11,10 +11,10 @@ class Solution:
 
         for i, num in enumerate(nums):
             contender_index = index_of_num.get(target - num)
-            if index_of_num.get(target - num) and i != contender_index:
+            if contender_index and i != contender_index:
                 return [i, contender_index]
 
-        return 0, 0
+        return [0, 0]
 
 
 class Test(unittest.TestCase):
@@ -24,5 +24,5 @@ class Test(unittest.TestCase):
         self.assertEqual(s.twoSum([2, 7, 11, 15], 9), [0, 1])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

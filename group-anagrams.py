@@ -1,9 +1,9 @@
-from typing import List, Tuple
+from typing import List
 import unittest
 
 
 class Solution:
-    def serializeStr(self, str: str) -> Tuple[str]:
+    def serializeStr(self, str: str):
         return tuple(sorted(str))
 
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -34,11 +34,11 @@ class Test(unittest.TestCase):
 
         self.assertEqual(
             s.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]),
-            [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
+            [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]],
         )
         self.assertEqual(s.groupAnagrams([""]), [[""]])
         self.assertEqual(s.groupAnagrams(["a"]), [["a"]])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -5,12 +5,12 @@ from collections import Counter
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if len(t) > len(s):
-            return ''
+            return ""
 
         desired = Counter(t)
         found = {}
         matches = 0
-        result = ''
+        result = ""
 
         left, right = 0, 0
 
@@ -23,8 +23,8 @@ class Solution:
                     matches += 1
 
             while matches == len(desired):
-                if result == '' or right - left < len(result):
-                    result = s[left: right + 1]
+                if result == "" or right - left < len(result):
+                    result = s[left : right + 1]
 
                 if s[left] in found:
                     if found[s[left]] > 1:
@@ -46,15 +46,13 @@ class Test(unittest.TestCase):
     def test(self):
         s = Solution()
 
-        self.assertEqual(
-            s.minWindow('aaaaaaaaaaaabbbbbcdd', 'abcdd'), 'abbbbbcdd'
-        )
-        self.assertEqual(s.minWindow('ADOBECODEBANC', 'ABC'), 'BANC')
-        self.assertEqual(s.minWindow('a', 'b'), '')
-        self.assertEqual(s.minWindow('a', 'aa'), '')
-        self.assertEqual(s.minWindow('a', 'a'), 'a')
-        self.assertEqual(s.minWindow('aa', 'aa'), 'aa')
+        self.assertEqual(s.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"), "abbbbbcdd")
+        self.assertEqual(s.minWindow("ADOBECODEBANC", "ABC"), "BANC")
+        self.assertEqual(s.minWindow("a", "b"), "")
+        self.assertEqual(s.minWindow("a", "aa"), "")
+        self.assertEqual(s.minWindow("a", "a"), "a")
+        self.assertEqual(s.minWindow("aa", "aa"), "aa")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

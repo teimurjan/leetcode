@@ -1,3 +1,4 @@
+from typing import Optional
 import unittest
 
 
@@ -9,14 +10,18 @@ class TreeNode:
 
 
 class Solution:
-    def isValidBSTHelper(self, root: TreeNode, min=float('-inf'), max=float('inf')) -> bool:
+    def isValidBSTHelper(
+        self, root: Optional[TreeNode], min=float("-inf"), max=float("inf")
+    ) -> bool:
         if not root:
             return True
 
         if root.val <= min or root.val >= max:
             return False
 
-        return self.isValidBSTHelper(root.left, min, root.val) and self.isValidBSTHelper(root.right, root.val, max)
+        return self.isValidBSTHelper(
+            root.left, min, root.val
+        ) and self.isValidBSTHelper(root.right, root.val, max)
 
     def isValidBST(self, root: TreeNode) -> bool:
         return self.isValidBSTHelper(root)
@@ -58,5 +63,5 @@ class Test(unittest.TestCase):
         self.assertEqual(s.isValidBST(invalid_tree), False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

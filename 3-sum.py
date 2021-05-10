@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Set
 import unittest
 
 
@@ -19,7 +19,7 @@ class SolutionTwoSum:
 
         return result
 
-    def twoSum(self, nums: List[int], pos: int, result: List[List[int]]) -> List[List[int]]:
+    def twoSum(self, nums: List[int], pos: int, result: List[List[int]]):
         seen = set()
         j = pos + 1
 
@@ -52,7 +52,7 @@ class SolutionTwoSum2:
 
         return result
 
-    def twoSum(self, nums: List[int], pos: int, result: List[List[int]]) -> List[List[int]]:
+    def twoSum(self, nums: List[int], pos: int, result: List[List[int]]):
         low, high = pos + 1, len(nums) - 1
 
         while low < high:
@@ -73,7 +73,7 @@ class SolutionTwoSum2:
 
 
 class SolutionNoSort:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: List[int]) -> Set[List[int]]:
         result = set()
         duplicates = set()
         seen = {}
@@ -99,27 +99,20 @@ class Test(unittest.TestCase):
     def test_solution_two_sum(self):
         s = SolutionTwoSum()
 
-        self.assertEqual(s.threeSum(
-            [-1, 0, 1, 2, -1, -4]),
-            [[-1, 1, 0], [-1, 2, -1]]
-        )
+        self.assertEqual(s.threeSum([-1, 0, 1, 2, -1, -4]), [[-1, 1, 0], [-1, 2, -1]])
 
     def test_solution_two_sum_2(self):
         s = SolutionTwoSum2()
 
-        self.assertEqual(s.threeSum(
-            [-1, 0, 1, 2, -1, -4]),
-            [[-1, -1, 2], [-1, 0, 1]]
-        )
+        self.assertEqual(s.threeSum([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
 
     def test_solution_no_sort(self):
         s = SolutionNoSort()
 
-        self.assertEqual(s.threeSum(
-            [-1, 0, 1, 2, -1, -4]),
-            set([(-1, -1, 2), (-1, 0, 1)])
+        self.assertEqual(
+            s.threeSum([-1, 0, 1, 2, -1, -4]), set([(-1, -1, 2), (-1, 0, 1)])
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
